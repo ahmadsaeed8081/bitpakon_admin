@@ -20,6 +20,7 @@ import {
 } from "../../../src/components/config";
 
 import { useContractReads,useContractRead ,useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import TransactionModal from "./transactionModal";
 
 
 const SwapApproval = (props) => {
@@ -28,6 +29,7 @@ const SwapApproval = (props) => {
   const [choosed_order, set_choosed_order] = useState(0);
   const [index_no, set_index_no] = useState(-1);
   const [decision, set_decision] = useState(0);
+  const [hash, setHash] = useState("");
 
   const { chain } = useNetwork()
 
@@ -52,7 +54,7 @@ const SwapApproval = (props) => {
     address: du_cont_address,
     abi: du_cont_abi,
     functionName: 'respond_to_request',
-    args: [choosed_order,index_no],
+    args: [choosed_order,index_no,hash],
 })
 
 
@@ -76,37 +78,32 @@ onSuccess(data) {
 
 })
 
-useEffect(()=>{
-  console.log("LKNLJN BIUBN "+index_no)
-  if(index_no != -1)
-  {   
-    if(CHAIN_ID==chain.id)
-    {
+// useEffect(()=>{
+//   console.log("LKNLJN BIUBN "+index_no)
+//   if(index_no != -1)
+//   {   
+//     if(CHAIN_ID==chain.id)
+//     {
 
-      respond_to_request1?.();
-    }
-    else
-    {
-      respond_to_request_switch();
-    }
-  }
+//       respond_to_request1?.();
+//     }
+//     else
+//     {
+//       respond_to_request_switch();
+//     }
+//   }
 
-},[decision])
+// },[decision])
 
- function action(_orderNo,_decision,_index)
+ function action()
  {
 
-  
   if(props.owner.toLowerCase() != address.toLowerCase())
   {
     alert("only owner can perform this transaction")
     return;
   }
-  set_choosed_order(_orderNo);
-  set_index_no(_index)
-  set_decision(_decision);
-  if(_decision==decision)
-  {
+
     if(CHAIN_ID==chain.id)
     {
       respond_to_request1?.();
@@ -115,17 +112,37 @@ useEffect(()=>{
     {
       respond_to_request_switch();
     }
-  }
+  
 
 
 }
 
+function openmodal(_orderNo,_decision,_index)
+{
+
+ if(props.owner.toLowerCase() != address.toLowerCase())
+ {
+   alert("only owner can perform this transaction")
+   return;
+ }
+ set_choosed_order(_orderNo);
+ set_index_no(_index)
+ set_decision(_decision);
+ 
+ setIsOpenModal(true);
+
+}
+
+   const [isOpenModal,setIsOpenModal]= useState(false);
 
 
 
 
   return (
     <Wrapper  title="Swap Approval">
+    
+    <TransactionModal setHash={setHash} hash={hash} action={action} setIsModalOpen={setIsOpenModal} isModalOpen={isOpenModal}   />
+        
       <div className=" flex   justify-between items-center">
         <div>
         
@@ -222,7 +239,10 @@ useEffect(()=>{
 
                         <td className="align-middle font-semibold px-6 py-3 whitespace-nowrap text-center">
                           <button 
-                          onClick={()=>action(item[1],1,item[5])}
+                          onClick={()=>{
+                            openmodal(item[1],1,item[5])
+
+                          }}
                           className="btn text-white font-poppins " style={{ backgroundColor:"green",padding:"5px" }}>
                            Approved
                           </button>

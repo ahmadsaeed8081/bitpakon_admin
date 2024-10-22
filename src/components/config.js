@@ -1,6 +1,7 @@
-export const poly_cont_address="0x816Da8672cFA82625B12df829db95FF57c5602C4"; 
-export const du_cont_address="0x8A36D4f99aa7E6a80c25Aa97291B83000EEdf646"; 
+export const poly_cont_address="0x3F5923B4fdD101b34E70F19Ec5FcC3263a40C758"; 
+export const du_cont_address="0x326959F94DA0cCeeca2654B22955B1Cf6754b534"; 
 export const usdt_address="0x341343568948459e5b7017eDDb05110cfA3EF699";
+
 
 export const poly_cont_abi=[
 	{
@@ -163,6 +164,30 @@ export const poly_cont_abi=[
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "_add",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "day_no",
+				"type": "uint256"
+			}
+		],
+		"name": "get_givenDay_roi",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "roi_earning",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "_num",
 				"type": "uint256"
@@ -227,6 +252,11 @@ export const poly_cont_abi=[
 				"internalType": "uint256",
 				"name": "roi_earning",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "today_earning",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -262,6 +292,11 @@ export const poly_cont_abi=[
 						"internalType": "uint256",
 						"name": "category",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "roi",
+						"type": "uint256"
 					}
 				],
 				"internalType": "struct Bitpakon.allInvestments[]",
@@ -289,7 +324,7 @@ export const poly_cont_abi=[
 		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "v",
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -425,6 +460,19 @@ export const poly_cont_abi=[
 	},
 	{
 		"inputs": [],
+		"name": "test",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "time_divider",
 		"outputs": [
 			{
@@ -533,10 +581,149 @@ export const poly_cont_abi=[
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "add",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "day_no",
+				"type": "uint256"
+			}
+		],
+		"name": "user_dayData",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "max_roi",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "directIncome",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "investmentNo_arr",
+						"type": "uint256[]"
+					}
+				],
+				"internalType": "struct Bitpakon.daily_data",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "add",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "i",
+				"type": "uint256"
+			}
+		],
+		"name": "user_investment",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "investedAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expire_Time",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "DepositTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "investmentNum",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "category",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "roi",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Bitpakon.allInvestments",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ];
 
 export const du_cont_abi=[
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "num",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "index_no",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_hash",
+				"type": "bytes32"
+			}
+		],
+		"name": "respond_to_request",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
 	{
 		"inputs": [
 			{
@@ -549,29 +736,57 @@ export const du_cont_abi=[
 		"type": "constructor"
 	},
 	{
-		"inputs": [],
-		"name": "Maximum_withdraw_limit",
-		"outputs": [
+		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "val",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "update_fee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "Minimum_withdraw_limit",
-		"outputs": [
+		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "val",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "update_Minimum_withdraw_limit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "add",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "total_earning",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "withdraw_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "withdrawEarning",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -622,6 +837,11 @@ export const du_cont_abi=[
 						"internalType": "uint256",
 						"name": "index_no",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "hash",
+						"type": "bytes32"
 					}
 				],
 				"internalType": "struct bitpakon_withdrawal.order_data[]",
@@ -667,6 +887,11 @@ export const du_cont_abi=[
 						"internalType": "uint256",
 						"name": "index_no",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "hash",
+						"type": "bytes32"
 					}
 				],
 				"internalType": "struct bitpakon_withdrawal.order_data[]",
@@ -718,6 +943,11 @@ export const du_cont_abi=[
 						"internalType": "uint256",
 						"name": "index_no",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "hash",
+						"type": "bytes32"
 					}
 				],
 				"internalType": "struct bitpakon_withdrawal.order_data",
@@ -782,11 +1012,42 @@ export const du_cont_abi=[
 						"internalType": "uint256",
 						"name": "index_no",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "hash",
+						"type": "bytes32"
 					}
 				],
 				"internalType": "struct bitpakon_withdrawal.order_data[]",
 				"name": "order",
 				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "Maximum_withdraw_limit",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "Minimum_withdraw_limit",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -828,30 +1089,6 @@ export const du_cont_abi=[
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "num",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "index_no",
-				"type": "uint256"
-			}
-		],
-		"name": "respond_to_request",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -884,45 +1121,6 @@ export const du_cont_abi=[
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "val",
-				"type": "uint256"
-			}
-		],
-		"name": "update_Minimum_withdraw_limit",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "val",
-				"type": "uint256"
-			}
-		],
-		"name": "update_fee",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
 				"name": "",
 				"type": "address"
 			}
@@ -936,34 +1134,6 @@ export const du_cont_abi=[
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "add",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "total_earning",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "withdraw_amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_id",
-				"type": "uint256"
-			}
-		],
-		"name": "withdrawEarning",
-		"outputs": [],
-		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
